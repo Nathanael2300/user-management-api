@@ -90,4 +90,6 @@ npx mocha
 
 ## 👨‍💻 Autor
 
-Projeto desenvolvido com foco em evolução para SDET 🚀
+**Nathanael Henrique**
+QA Engineer / SDET
+
