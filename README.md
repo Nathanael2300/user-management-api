@@ -1,7 +1,6 @@
 # 🚀 Users API - SDET Project
 
-API RESTful desenvolvida para praticar conceitos de **SDET (Software Development Engineer in Test)**, incluindo criação de endpoints, testes automatizados e boas práticas de desenvolvimento.
-
+API RESTful desenvolvida para praticar conceitos de **SDET (Software Development Engineer in Test)**, incluindo criação de endpoints e testes automatizados 
 ---
 
 ## 📌 Objetivo
