@@ -1,21 +1,22 @@
 # 🚀 Users API - SDET Project
 
-API RESTful desenvolvida para praticar conceitos de **SDET (Software Development Engineer in Test)**, incluindo criação de endpoints e testes automatizados 
----
-
-## 📌 Objetivo
-
-Este projeto tem como foco:
-
-* Construção de uma API REST com Node.js
-* Aplicação de testes unitários e de integração
-* Simulação de cenários reais de backend
-* Prática de arquitetura (models, controllers, routes)
-* Preparação para CI/CD (futuro)
+RESTful API developed to practice **SDET (Software Development Engineer in Test)** concepts, including endpoint creation and automated testing.
 
 ---
 
-## 🛠️ Tecnologias
+## 📌 Objective
+
+This project focuses on:
+
+* Building a REST API using Node.js
+* Applying unit and integration tests
+* Simulating real-world backend scenarios
+* Practicing architecture (models, controllers, routes)
+* Preparing for CI/CD (future)
+
+---
+
+## 🛠️ Technologies
 
 * Node.js
 * Express
@@ -24,7 +25,7 @@ Este projeto tem como foco:
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 src/
@@ -37,21 +38,21 @@ test/
 
 ---
 
-## 🚀 Como rodar o projeto
+## 🚀 How to run the project
 
-1. Clone o repositório:
+1. Clone the repository:
 
 ```
-git clone <url-do-repo>
+git clone <repository-url>
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 
 ```
 npm install
 ```
 
-3. Inicie o servidor:
+3. Start the server:
 
 ```
 node src/server.js
@@ -59,7 +60,7 @@ node src/server.js
 
 ---
 
-## 🔌 Endpoints (exemplo)
+## 🔌 Endpoints (example)
 
 * GET /users
 * GET /users/:id
@@ -69,9 +70,9 @@ node src/server.js
 
 ---
 
-## 🧪 Testes
+## 🧪 Tests
 
-Para rodar os testes:
+To run the tests:
 
 ```
 npx mocha
@@ -79,17 +80,16 @@ npx mocha
 
 ---
 
-## 🎯 Próximos passos
+## 🎯 Next Steps
 
-* Implementar testes de integração
-* Adicionar validações
-* Implementar CI/CD
-* Criar testes E2E
+* Implement integration tests
+* Add validations
+* Implement CI/CD
+* Create E2E tests
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
 **Nathanael Henrique**
 QA Engineer / SDET
-
