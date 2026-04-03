@@ -1,7 +1,9 @@
-// src/models/userModel.js
+import userFactory from "../../test/factories/factories_userModel.js";
+import mockUsers from "../data/usersMock.js";
+
 class UserModel {
   constructor() {
-    this.users = [];
+    this.users = mockUsers.map((u) => ({ ...u }));
   }
 
   async create(userData) {
@@ -12,11 +14,11 @@ class UserModel {
     return new Promise((resolve) => setTimeout(() => resolve(newUser), 300));
   }
 
-  getAll() {
+  async getAll() {
     return this.users;
   }
 
-  getById(id) {
+  async getById(id) {
     return this.users.find((u) => u.id === id);
   }
 
@@ -32,9 +34,9 @@ class UserModel {
     const index = this.users.findIndex((u) => u.id === id);
     if (index === -1) return null;
 
-    const deletedUser = this.users.splice(index, 1);
-    return deletedUser[0];
+    const deletedUser = this.users.splice(index, 1)[0];
+    return deletedUser;
   }
 }
 
-module.exports = new UserModel();
+export default new UserModel();
