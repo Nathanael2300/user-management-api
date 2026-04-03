@@ -19,11 +19,15 @@
   },
   "homepage": "https://github.com/Nathanael2300/user-management-api#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
     "chai": "^6.2.2",
-    "mocha": "^11.7.5"
+    "mocha": "^11.7.5",
+    "nodemon": "^3.1.14"
   }
 }
