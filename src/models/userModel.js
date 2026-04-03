@@ -1,4 +1,3 @@
-import userFactory from "../../test/factories/factories_userModel.js";
 import mockUsers from "../data/usersMock.js";
 
 class UserModel {
