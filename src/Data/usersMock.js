@@ -4,7 +4,7 @@ const mockUsers = [
     username: "nathan2300",
     nickname: "nathanGamer",
     profilePicture: "https://i.pravatar.cc/150?img=1",
-    bio: "Apaixonado por tecnologia e café.",
+    bio: "Software Development Engineer in Test",
     phoneNumber: "11999990001",
     address: {
       street: "Rua das Flores, 123",
