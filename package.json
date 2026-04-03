@@ -20,5 +20,9 @@
   "homepage": "https://github.com/Nathanael2300/user-management-api#readme",
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "mocha": "^11.7.5"
   }
 }
