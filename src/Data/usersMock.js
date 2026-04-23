@@ -1,6 +1,8 @@
 const mockUsers = [
   {
     id: 1,
+    email: "nathan2300@example.com",
+    password: "A1b2C3d4",
     username: "nathan2300",
     nickname: "nathanGamer",
     profilePicture: "https://i.pravatar.cc/150?img=1",
@@ -21,6 +23,8 @@ const mockUsers = [
   },
   {
     id: 2,
+    email: "lisa_tech@example.com",
+    password: "X7y8Z9w0",
     username: "lisa_tech",
     nickname: "lisaCool",
     profilePicture: "https://i.pravatar.cc/150?img=2",
@@ -41,6 +45,8 @@ const mockUsers = [
   },
   {
     id: 3,
+    email: "carlos_dev@example.com",
+    password: "M5n6O7p8",
     username: "carlos_dev",
     nickname: "carlito",
     profilePicture: "https://i.pravatar.cc/150?img=3",
@@ -61,6 +67,8 @@ const mockUsers = [
   },
   {
     id: 4,
+    email: "ana_santos@example.com",
+    password: "Q1r2S3t4",
     username: "ana_santos",
     nickname: "anaGeek",
     profilePicture: "https://i.pravatar.cc/150?img=4",
@@ -81,6 +89,8 @@ const mockUsers = [
   },
   {
     id: 5,
+    email: "marcos_leal@example.com",
+    password: "R9s0T1u2",
     username: "marcos_leal",
     nickname: "marcinho",
     profilePicture: "https://i.pravatar.cc/150?img=5",
@@ -101,6 +111,8 @@ const mockUsers = [
   },
   {
     id: 6,
+    email: "beatriz_m@example.com",
+    password: "V3w4X5y6",
     username: "beatriz_m",
     nickname: "biaDev",
     profilePicture: "https://i.pravatar.cc/150?img=6",
@@ -121,6 +133,8 @@ const mockUsers = [
   },
   {
     id: 7,
+    email: "joao_freitas@example.com",
+    password: "G7h8I9j0",
     username: "joao_freitas",
     nickname: "joaotech",
     profilePicture: "https://i.pravatar.cc/150?img=7",
@@ -141,6 +155,8 @@ const mockUsers = [
   },
   {
     id: 8,
+    email: "carla_souza@example.com",
+    password: "K1l2M3n4",
     username: "carla_souza",
     nickname: "carlinha",
     profilePicture: "https://i.pravatar.cc/150?img=8",
@@ -161,6 +177,8 @@ const mockUsers = [
   },
   {
     id: 9,
+    email: "rafael_oliveira@example.com",
+    password: "Z5a6B7c8",
     username: "rafael_oliveira",
     nickname: "rafaDev",
     profilePicture: "https://i.pravatar.cc/150?img=9",
@@ -181,6 +199,8 @@ const mockUsers = [
   },
   {
     id: 10,
+    email: "juliana_p@example.com",
+    password: "H3j4K5l6",
     username: "juliana_p",
     nickname: "juGeek",
     profilePicture: "https://i.pravatar.cc/150?img=10",
