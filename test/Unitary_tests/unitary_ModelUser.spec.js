@@ -4,11 +4,12 @@ import userFactory from "../../test/factories/factories_userModel.js";
 import mockUsers from "../../src/data/usersMock.js";
 
 describe("User Model", () => {
-  describe("Scenarios positive", () => {
-    beforeEach(() => {
-      userModel.users = [...mockUsers];
-    });
-    describe("getAll()", () => {
+  beforeEach(() => {
+    userModel.users = [...mockUsers];
+  });
+
+  describe("getAllUsers()", () => {
+    describe("cenários positivos", () => {
       it("should return all users with correct structure", async () => {
         const users = await userModel.getAllUsers();
 
@@ -25,7 +26,20 @@ describe("User Model", () => {
       });
     });
 
-    describe("getById()", () => {
+    describe("cenários negativos", () => {
+      it("should return an empty array when no users exist", async () => {
+        userModel.users = [];
+
+        const users = await userModel.getAllUsers();
+
+        expect(users).to.be.an("array");
+        expect(users).to.have.lengthOf(0);
+      });
+    });
+  });
+
+  describe("getById()", () => {
+    describe("cenários positivos", () => {
       it("should return a user when a valid ID is provided", async () => {
         const user = await userModel.getById(1);
 
@@ -37,7 +51,21 @@ describe("User Model", () => {
       });
     });
 
-    describe("createUser()", () => {
+    describe("cenários negativos", () => {
+      it("should return undefined when user is not found", async () => {
+        const user = await userModel.getById(999);
+        expect(user).to.be.undefined;
+      });
+
+      it("should return undefined when ID is invalid", async () => {
+        const user = await userModel.getById(null);
+        expect(user).to.be.undefined;
+      });
+    });
+  });
+
+  describe("createUser()", () => {
+    describe("cenários positivos", () => {
       it("should create a new user and return it with an id", async () => {
         const userData = userFactory();
         const initialLength = userModel.users.length;
@@ -66,8 +94,10 @@ describe("User Model", () => {
         expect(foundUser.email).to.equal(userData.email);
       });
     });
+  });
 
-    describe("updateUser()", () => {
+  describe("updateUser()", () => {
+    describe("cenários positivos", () => {
       it("should update a user with valid data", async () => {
         const userData = userFactory();
 
@@ -110,7 +140,19 @@ describe("User Model", () => {
       });
     });
 
-    describe("deleteUser()", () => {
+    describe("cenários negativos", () => {
+      it("should return null when user does not exist", async () => {
+        const updatedUser = await userModel.updateUser(999, {
+          email: "teste@email.com",
+        });
+
+        expect(updatedUser).to.be.null;
+      });
+    });
+  });
+
+  describe("deleteUser()", () => {
+    describe("cenários positivos", () => {
       it("should delete a user and remove it from the array", async () => {
         const initialLength = userModel.users.length;
 
@@ -125,49 +167,11 @@ describe("User Model", () => {
         expect(user).to.be.undefined;
       });
     });
-  });
 
-  describe("Scenario negative", () => {
-    describe("getAll", () => {
-      it("should return an empty array when no users exist", async () => {
-        userModel.users = [];
-
-        const users = await userModel.getAllUsers();
-
-        expect(users).to.be.an("array");
-        expect(users).to.have.lengthOf(0);
-      });
-
-      describe("getById", () => {
-        it("should return undefined when user is not found", async () => {
-          const user = await userModel.getById(999);
-
-          expect(user).to.be.undefined;
-        });
-
-        it("should return undefined when ID is invalid", async () => {
-          const user = await userModel.getById(null);
-
-          expect(user).to.be.undefined;
-        });
-      });
-
-      describe("updateUser()", () => {
-        it("should return undefined when user does not exist", async () => {
-          const updatedUser = await userModel.updateUser(999, {
-            email: "teste@email.com",
-          });
-
-          expect(updatedUser).to.be.null;
-        });
-      });
-
-      describe("deleteUser", () => {
-        it("should return undefined when user does not exist", async () => {
-          const deletedUser = await userModel.deleteUser(999);
-
-          expect(deletedUser).to.be.null;
-        });
+    describe("cenários negativos", () => {
+      it("should return null when user does not exist", async () => {
+        const deletedUser = await userModel.deleteUser(999);
+        expect(deletedUser).to.be.null;
       });
     });
   });
