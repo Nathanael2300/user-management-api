@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 export default function userFactory(override = {}) {
   return {
     email: faker.internet.email(),
-    password: faker.internet.password({ length: 8 }),
+    password: `A${faker.internet.password({ length: 6 })}1`,
 
     username: faker.internet.username(),
     nickname: faker.internet.username(),
@@ -11,12 +11,11 @@ export default function userFactory(override = {}) {
     profilePicture: faker.image.avatar(),
     bio: faker.lorem.sentence(),
 
-    phoneNumber: faker.phone.number(),
-
+    phoneNumber: "11999999999",
     address: {
       street: faker.location.streetAddress(),
       city: faker.location.city(),
-      state: faker.location.state(),
+      state: "SP",
       zipCode: faker.location.zipCode(),
     },
 
