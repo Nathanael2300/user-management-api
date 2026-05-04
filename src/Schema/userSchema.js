@@ -5,15 +5,20 @@ export const getUserSchemaById = z.object({
 });
 
 export const createUserSchema = z.object({
-  email: z.string().email().trim(),
+  email: z.string().email("Invalid email").trim(),
 
   password: z
     .string()
-    .min(6)
+    .min(1, "Password is required")
+    .min(6, "Password must be at least 6 characters")
     .regex(/[A-Z]/, "Must contain at least one uppercase letter")
     .regex(/[0-9]/, "Must contain at least one number"),
 
-  username: z.string().min(3).trim(),
+  username: z
+    .string()
+    .min(1, "Username is required")
+    .min(3, "Username must be at least 3 characters")
+    .trim(),
 
   nickname: z.string().min(3).trim().optional(),
 
