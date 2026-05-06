@@ -69,7 +69,7 @@ describe("User Service", () => {
     });
   });
 
-  describe.only("createUser()", () => {
+  describe("createUser()", () => {
     describe("Positive Scenarios", () => {
       it("Should create a user successfully", async () => {
         const userData = userFactory();
