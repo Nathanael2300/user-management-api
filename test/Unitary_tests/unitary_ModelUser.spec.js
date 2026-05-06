@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import userModel from "../../src/models/userModel.js";
-import userFactory from "../../test/factories/factories_userModel.js";
+import userFactory from "../../test/factories/user.factory.js";
 import mockUsers from "../../src/data/usersMock.js";
 
 describe("User Model", () => {
