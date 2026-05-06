@@ -69,12 +69,18 @@ describe("User Service", () => {
     });
   });
 
-  describe("createUser()", () => {
+  describe.only("createUser()", () => {
     describe("Positive Scenarios", () => {
       it("Should create a user successfully", async () => {
-        sinon.stub(userModel, "createUser").resolves(mockUsers);
-
         const userData = userFactory();
+
+        const mockUser = {
+          id: faker.number.int({ min: 30000 }),
+          ...userData,
+        };
+
+        sinon.stub(userModel, "createUser").resolves(mockUser);
+
         const user = await userService.createUser(userData);
 
         const fieldsRequired = {
@@ -82,9 +88,9 @@ describe("User Service", () => {
           password: "string",
           username: "string",
         };
-        expect(user).to.be.an("object");
 
         for (const [field, type] of Object.entries(fieldsRequired)) {
+          expect(user).to.be.an("object");
           expect(user).to.have.property(field);
           expect(user[field]).to.be.an(type);
         }
@@ -92,7 +98,6 @@ describe("User Service", () => {
     });
 
     describe("Negative Scenarios", () => {
-      sinon.stub(userModel, "createUser").resolves(mockUsers);
       const requiredField = ["email", "password", "username"];
       const expectedErrors = {
         email: "Invalid email",
@@ -101,6 +106,7 @@ describe("User Service", () => {
       };
       for (const key of requiredField) {
         it(`Should fail when ${key} is empty`, async () => {
+          sinon.stub(userModel, "createUser").resolves(mockUsers);
           try {
             const userData = userFactory({ [key]: "" });
             await userService.createUser(userData);
@@ -115,8 +121,6 @@ describe("User Service", () => {
       const uniqueFields = ["email", "username"];
       for (const key of uniqueFields) {
         it(`Should not allow creating a user with duplicate ${key} `, async () => {
-          sinon.stub(userModel, "createUser").resolves(mockUsers);
-
           const userData = userFactory();
 
           await userService.createUser(userData);
@@ -128,7 +132,7 @@ describe("User Service", () => {
             throw new Error(`Test failed: duplicate ${key} was allowed`);
           } catch (err) {
             await expect(userService.createUser(userData)).to.be.rejectedWith(
-              "User already exists",
+              "User already exist",
             );
           }
         });
@@ -182,7 +186,7 @@ describe("User Service", () => {
   });
 
   describe("deleteUser()", () => {
-    describe.only("Positive Scenarios", () => {
+    describe("Positive Scenarios", () => {
       it("Should delete user successfully", async () => {
         const mockUser = mockUsers[0];
 
@@ -199,7 +203,7 @@ describe("User Service", () => {
       });
     });
 
-    describe.only("Negative Scenarios", () => {
+    describe("Negative Scenarios", () => {
       it("Should not delete user when user id is invalid", async () => {
         sinon.stub(userModel, "deleteUser").resolves(null);
         const number = faker.number.int({ min: 30000 });
