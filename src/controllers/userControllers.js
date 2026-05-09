@@ -1,10 +1,4 @@
 import userService from "../services/userService.js";
-import {
-  getUserSchemaById,
-  createUserSchema,
-  updateUserSchema,
-  userDeleteSchema,
-} from "../Schema/userSchema.js";
 
 class UserController {
   async getAllUsers(req, res) {
@@ -17,14 +11,14 @@ class UserController {
   }
 
   async getUserById(req, res) {
-    const { id } = getUserSchemaById.parse(req.params);
+    const { id } = req.params;
+
     const user = await userService.getUserById(id);
     return res.status(200).json({ user: user });
   }
 
   async createUser(req, res) {
-    const data = createUserSchema.parse(req.body);
-    const user = await userService.createUser(data);
+    const user = await userService.createUser(req.body);
     return res.status(201).json({
       message: "User created successfully",
       user: user,
@@ -32,9 +26,10 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    const { id } = getUserSchemaById.parse(req.params);
-    const data = updateUserSchema.parse(userData);
-    const user = await userService.updateUser(id, data);
+    const { id } = req.params;
+    const updateData = req.body;
+
+    const user = await userService.updateUser(id, updateData);
     return res.status(200).json({
       message: "User updated successfully",
       user: user,
@@ -42,7 +37,8 @@ class UserController {
   }
 
   async deleteUser(req, res) {
-    const { id } = userDeleteSchema.parse(req.params);
+    const { id } = req.params;
+
     await userService.deleteUser(id);
     return res.status(204).send();
   }
