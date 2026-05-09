@@ -1,5 +1,4 @@
 import express from "express";
-import { router } from "express";
 import userController from "../controllers/userControllers.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import { validate } from "../middlewares/validate.js";
@@ -10,6 +9,8 @@ import {
   updateUserSchema,
   userDeleteSchema,
 } from "../Schema/userSchema.js";
+
+const router = express.Router();
 
 router.get("/", asyncHandler(userController.getAllUsers));
 
