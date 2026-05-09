@@ -15,6 +15,7 @@ class UserModel {
 
   async createUser(userData) {
     const newId = this.users.length + 1;
+
     const newUser = { id: newId, ...userData };
 
     this.users.push(newUser);
