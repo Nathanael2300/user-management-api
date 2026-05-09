@@ -3,6 +3,21 @@ import userApi from "../helpers/userApi.js";
 import userFactory from "../factories/user.factory.js";
 
 describe("User Integration Tests", () => {
+  let userId;
+
+  beforeEach(async () => {
+    const userData = userFactory();
+    const res = await userApi.create(userData);
+
+    userId = res.body.user.id;
+  });
+
+  afterEach(async () => {
+    if (userId) {
+      await userApi.delete(userId);
+    }
+  });
+
   describe("/GET", () => {
     describe("Positive Scenarios", () => {
       it("Should return all user list", async () => {
@@ -62,13 +77,7 @@ describe("User Integration Tests", () => {
   describe("/GET/:id", () => {
     describe("Scenarios positive", () => {
       it("Should return a user list", async () => {
-        const createUser = userFactory();
-        const resCreate = await userApi.create(createUser);
-        expect(resCreate.status).to.eql(201);
-
-        const id = resCreate.body.user.id;
-
-        const resGetById = await userApi.getById(id);
+        const resGetById = await userApi.getById(userId);
 
         expect(resGetById.status).to.eql(200);
         const fields = [
@@ -168,11 +177,8 @@ describe("User Integration Tests", () => {
   describe("/PUT/:id", () => {
     describe("Scenario positive", () => {
       it("Should update a user successfully", async () => {
-        const newUserData = userFactory();
+        const dataUpdated = userFactory();
 
-        const resCreate = await userApi.create(newUserData);
-        expect(resCreate.status).to.eql(201);
-        expect(resCreate.body).to.be.an("object");
         const fields = [
           "email",
           "password",
@@ -185,21 +191,25 @@ describe("User Integration Tests", () => {
           "website",
           "socialLinks",
         ];
-        expect(resCreate.body.user.id).to.be.a("number");
-        for (const key of fields) {
-          expect(resCreate.body.user).to.have.property(key);
-          expect(resCreate.body.user[key]).to.eql(newUserData[key]);
-        }
 
-        const userId = resCreate.body.user.id;
-
-        const dataUpdated = userFactory();
         const resPut = await userApi.update(userId, dataUpdated);
+        expect(resPut.status).to.eql(200);
+        expect(resPut.body).to.be.an("object");
         expect(resPut.body.user.id).to.be.a("number");
         for (const keyUpdated of fields) {
           expect(resPut.body.user).to.have.property(keyUpdated);
           expect(resPut.body.user[keyUpdated]).to.eql(dataUpdated[keyUpdated]);
         }
+      });
+    });
+    describe("Scenario negative", () => {});
+  });
+
+  describe("/DELETE/:id", () => {
+    describe("Scenario positive", () => {
+      it("Should delete a user successfully", async () => {
+        const resDelete = await userApi.delete(userId);
+        expect(resDelete.status).to.eql(204);
       });
     });
     describe("Scenario negative", () => {});
