@@ -1,5 +1,11 @@
 import userModel from "../models/userModel.js";
 import AppError from "../utils/AppError.js";
+import {
+  getUserSchemaById,
+  createUserSchema,
+  updateUserSchema,
+  userDeleteSchema,
+} from "../Schema/userSchema.js";
 
 class UserService {
   async getAllUsers() {
@@ -7,11 +13,7 @@ class UserService {
   }
 
   async getUserById(rawId) {
-    const id = Number(rawId);
-
-    if (isNaN(id)) {
-      throw new AppError("Invalid ID", 400);
-    }
+    const { id } = getUserSchemaById.parse({ id: rawId });
 
     const user = await userModel.getById(id);
 
@@ -23,6 +25,7 @@ class UserService {
   }
 
   async createUser(userData) {
+    createUserSchema.parse(userData);
     const { email, username } = userData;
 
     const emailExists = await userModel.users.find((u) => u.email === email);
@@ -38,11 +41,8 @@ class UserService {
   }
 
   async updateUser(rawId, userData) {
-    const id = Number(rawId);
-
-    if (isNaN(id)) {
-      throw new AppError("Invalid ID", 400);
-    }
+    const { id } = getUserSchemaById.parse({ id: rawId });
+    updateUserSchema.parse(userData);
 
     const { email, username } = userData;
 
@@ -66,7 +66,7 @@ class UserService {
       }
     }
 
-    const user = await userModel.updateUser(rawId, userData);
+    const user = await userModel.updateUser(id, userData);
 
     if (!user) {
       throw new AppError("User not found", 404);
@@ -75,11 +75,7 @@ class UserService {
   }
 
   async deleteUser(rawId) {
-    const id = Number(rawId);
-
-    if (isNaN(id)) {
-      throw new AppError("Invalid ID", 400);
-    }
+    const { id } = userDeleteSchema.parse({ id: rawId });
 
     const user = await userModel.deleteUser(id);
 
