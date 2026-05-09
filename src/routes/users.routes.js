@@ -34,7 +34,7 @@ router.put(
 
 router.delete(
   "/:id",
-  validate(userDeleteSchema),
+  validate(userDeleteSchema, "params"),
   asyncHandler(userController.deleteUser),
 );
 
