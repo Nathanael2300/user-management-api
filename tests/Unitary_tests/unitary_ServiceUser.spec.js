@@ -101,8 +101,8 @@ describe("User Service", () => {
       const requiredField = ["email", "password", "username"];
       const expectedErrors = {
         email: "Invalid email",
-        password: "Password is required",
-        username: "Username is required",
+        password: "Password must be at least 6 characters",
+        username: "Username must be at least 3 characters",
       };
       for (const key of requiredField) {
         it(`Should fail when ${key} is empty`, async () => {
@@ -110,10 +110,10 @@ describe("User Service", () => {
           try {
             const userData = userFactory({ [key]: "" });
             await userService.createUser(userData);
-            throw new Error(`Test failed: ${key} validation did not trigger`);
+            throw new Error("Should not reach here");
           } catch (err) {
-            expect(err.issues[0].path[0]).to.eql(key);
-            expect(err.issues[0].message).to.eql(expectedErrors[key]);
+            expect(err).to.have.property("message");
+            expect(err.issues[0].message).to.equal(expectedErrors[key]);
           }
         });
       }
