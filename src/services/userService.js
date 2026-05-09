@@ -7,11 +7,13 @@ class UserService {
   }
 
   async getUserById(rawId) {
-    if (isNaN(rawId)) {
+    const id = Number(rawId);
+
+    if (isNaN(id)) {
       throw new AppError("Invalid ID", 400);
     }
 
-    const user = await userModel.getById(rawId);
+    const user = await userModel.getById(id);
 
     if (!user) {
       throw new AppError("User not found", 404);
@@ -34,7 +36,9 @@ class UserService {
   }
 
   async updateUser(rawId, userData) {
-    if (isNaN(rawId)) {
+    const id = Number(rawId);
+
+    if (isNaN(id)) {
       throw new AppError("Invalid ID", 400);
     }
 
@@ -42,7 +46,7 @@ class UserService {
 
     if (email) {
       const emailExists = userModel.users.find(
-        (u) => u.email === email && u.id !== rawId,
+        (u) => u.email === email && u.id !== id,
       );
 
       if (emailExists) {
@@ -52,7 +56,7 @@ class UserService {
 
     if (username) {
       const usernameExist = userModel.users.find(
-        (u) => u.username === username && u.id !== rawId,
+        (u) => u.username === username && u.id !== id,
       );
 
       if (usernameExist) {
@@ -69,11 +73,13 @@ class UserService {
   }
 
   async deleteUser(rawId) {
-    if (isNaN(rawId)) {
+    const id = Number(rawId);
+
+    if (isNaN(id)) {
       throw new AppError("Invalid ID", 400);
     }
 
-    const user = await userModel.deleteUser(rawId);
+    const user = await userModel.deleteUser(id);
 
     if (!user) {
       throw new AppError("User not found", 404);
