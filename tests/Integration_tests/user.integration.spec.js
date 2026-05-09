@@ -10,6 +10,8 @@ describe("User Integration Tests", () => {
 
         expect(resGetAll.status).to.eql(200);
         expect(resGetAll.body).to.have.property("user_total");
+        expect(resGetAll.body).to.have.property("users");
+
         const fields = [
           "id",
           "email",
@@ -37,8 +39,11 @@ describe("User Integration Tests", () => {
           socialLinks: "array",
         };
 
+        expect(resGetAll.body).to.be.an("object");
+        expect(resGetAll.body.users).to.be.an("array");
         for (const user of resGetAll.body.users) {
           fields.forEach((field) => {
+            expect(user).to.be.an("object");
             expect(user).have.property(field);
           });
         }
@@ -92,6 +97,8 @@ describe("User Integration Tests", () => {
           website: "string",
           socialLinks: "array",
         };
+
+        expect(resGetById.body).to.be.an("object");
         for (const key of fields) {
           expect(resGetById.body.user).to.have.property(key);
         }
@@ -104,12 +111,55 @@ describe("User Integration Tests", () => {
     describe("Scenarios negative ", () => {});
   });
 
-  describe.only("/POST", () => {
+  describe("/POST", () => {
     describe("Scenarios positive", () => {
       it("Should create user successfully", async () => {
         const createUser = userFactory();
+        const beforeUserList = await userApi.getAll();
         const resCreate = await userApi.create(createUser);
         expect(resCreate.status).to.eql(201);
+
+        const fields = [
+          "id",
+          "email",
+          "password",
+          "username",
+          "nickname",
+          "profilePicture",
+          "bio",
+          "phoneNumber",
+          "address",
+          "website",
+          "socialLinks",
+        ];
+        const valueTypes = {
+          id: "number",
+          email: "string",
+          password: "string",
+          username: "string",
+          nickname: "string",
+          profilePicture: "string",
+          bio: "string",
+          phoneNumber: "string",
+          address: "object",
+          website: "string",
+          socialLinks: "array",
+        };
+
+        expect(resCreate.body).to.be.an("object");
+        expect(resCreate.body.user).to.be.an("object");
+        for (const key of fields) {
+          expect(resCreate.body.user).to.have.property(key);
+        }
+
+        for (const [key, value] of Object.entries(valueTypes)) {
+          expect(resCreate.body.user[key]).to.be.an(value);
+        }
+
+        const afterUserList = await userApi.getAll();
+        expect(afterUserList.body.user_total).to.equal(
+          beforeUserList.body.user_total + 1,
+        );
       });
     });
     describe("Scenarios negative", () => {});
