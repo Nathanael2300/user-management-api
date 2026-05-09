@@ -164,4 +164,44 @@ describe("User Integration Tests", () => {
     });
     describe("Scenarios negative", () => {});
   });
+
+  describe("/PUT/:id", () => {
+    describe("Scenario positive", () => {
+      it("Should update a user successfully", async () => {
+        const newUserData = userFactory();
+
+        const resCreate = await userApi.create(newUserData);
+        expect(resCreate.status).to.eql(201);
+        expect(resCreate.body).to.be.an("object");
+        const fields = [
+          "email",
+          "password",
+          "username",
+          "nickname",
+          "profilePicture",
+          "bio",
+          "phoneNumber",
+          "address",
+          "website",
+          "socialLinks",
+        ];
+        expect(resCreate.body.user.id).to.be.a("number");
+        for (const key of fields) {
+          expect(resCreate.body.user).to.have.property(key);
+          expect(resCreate.body.user[key]).to.eql(newUserData[key]);
+        }
+
+        const userId = resCreate.body.user.id;
+
+        const dataUpdated = userFactory();
+        const resPut = await userApi.update(userId, dataUpdated);
+        expect(resPut.body.user.id).to.be.a("number");
+        for (const keyUpdated of fields) {
+          expect(resPut.body.user).to.have.property(keyUpdated);
+          expect(resPut.body.user[keyUpdated]).to.eql(dataUpdated[keyUpdated]);
+        }
+      });
+    });
+    describe("Scenario negative", () => {});
+  });
 });
