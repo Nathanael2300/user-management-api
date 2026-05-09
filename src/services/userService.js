@@ -25,8 +25,10 @@ class UserService {
   async createUser(userData) {
     const { email, username } = userData;
 
-    const emailExists = await userModel.findByEmail(email);
-    const usernameExists = await userModel.findByUsername(username);
+    const emailExists = await userModel.users.find((u) => u.email === email);
+    const usernameExists = await userModel.users.find(
+      (u) => u.username === userData,
+    );
 
     if (emailExists || usernameExists) {
       throw new AppError("User already exist", 409);
