@@ -30,6 +30,9 @@ This project focuses on:
 
 ---
 
+## 📁 Project Structure
+
+```bash
 USER-MANAGEMENT-API/
 │
 ├── .github/
@@ -46,7 +49,6 @@ USER-MANAGEMENT-API/
 ├── src/
 │   ├── controllers/
 │   │   └── userControllers.js
-│   │
 │   ├── data/
 │   ├── middlewares/
 │   ├── models/
@@ -54,7 +56,6 @@ USER-MANAGEMENT-API/
 │   ├── schema/
 │   ├── services/
 │   ├── utils/
-│   │
 │   ├── app.js
 │   └── server.js
 │
@@ -82,6 +83,8 @@ USER-MANAGEMENT-API/
 ├── cypress.config.js
 ├── package-lock.json
 ├── package.json
+└── README.md
+```
 
 ## 🔌 Endpoints (example)
 
