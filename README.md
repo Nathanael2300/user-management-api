@@ -30,7 +30,7 @@ This project focuses on:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```bash
 USER-MANAGEMENT-API/
@@ -86,7 +86,7 @@ USER-MANAGEMENT-API/
 └── README.md
 ```
 
-## 🔌 Endpoints (example)
+##  Endpoints (example)
 
 * GET /users
 * GET /users/:id
@@ -96,7 +96,7 @@ USER-MANAGEMENT-API/
 
 ---
 
-## 🧪 Tests
+##  Tests
 
 To run the tests:
 
