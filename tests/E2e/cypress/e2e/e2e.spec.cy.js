@@ -1,3 +1,4 @@
+import "cypress-mochawesome-reporter/register";
 import userFactory from "../../../factories/user.factory";
 import userApiCy from "../../../helpers/userApi.cy";
 
