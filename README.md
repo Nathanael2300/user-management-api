@@ -1,10 +1,10 @@
-# 🚀 Users API - SDET Project
+#  Users API - SDET Project
 
 RESTful API developed to practice **SDET (Software Development Engineer in Test)** concepts, including endpoint creation and automated testing.
 
 ---
 
-## 📌 Objective
+##  Objective
 
 This project focuses on:
 
@@ -16,49 +16,72 @@ This project focuses on:
 
 ---
 
-## 🛠️ Technologies
+##  Technologies
 
 * Node.js
 * Express
+* Faker
+* Zod
 * Mocha
 * Chai
+* Sinon
+* Cypress
+* SuperTest
 
 ---
 
-## 📁 Project Structure
-
-```
-src/
-  models/
-  controllers/
-  routes/
-
-test/
-```
-
----
-
-## 🚀 How to run the project
-
-1. Clone the repository:
-
-```
-git clone <repository-url>
-```
-
-2. Install dependencies:
-
-```
-npm install
-```
-
-3. Start the server:
-
-```
-node src/server.js
-```
-
----
+USER-MANAGEMENT-API/
+│
+├── .github/
+│   └── workflows/
+│       ├── cypress.yml
+│       └── integration-test.yml
+│
+├── cypress/
+│   └── reports/
+│       └── index.html
+│
+├── node_modules/
+│
+├── src/
+│   ├── controllers/
+│   │   └── userControllers.js
+│   │
+│   ├── data/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── schema/
+│   ├── services/
+│   ├── utils/
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── tests/
+│   ├── E2E/
+│   │   └── cypress/
+│   │       ├── e2e/
+│   │       │   └── e2e.spec.cy.js
+│   │       ├── fixtures/
+│   │       └── support/
+│   │
+│   ├── factories/
+│   ├── helpers/
+│   │   ├── userApi.cy.js
+│   │   └── userApi.js
+│   │
+│   ├── Integration_tests/
+│   │   └── user.integration.spec.js
+│   │
+│   └── Unitary_tests/
+│       ├── unitary_ModelUser.spec.js
+│       └── unitary_ServiceUser.spec.js
+│
+├── .gitignore
+├── cypress.config.js
+├── package-lock.json
+├── package.json
 
 ## 🔌 Endpoints (example)
 
@@ -80,16 +103,18 @@ npx mocha
 
 ---
 
-## 🎯 Next Steps
+##  Next Steps
 
 * Implement integration tests
 * Add validations
 * Implement CI/CD
+* Create unitary tests
+* Create integrations tests
 * Create E2E tests
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Nathanael Henrique**
 QA Engineer / SDET
