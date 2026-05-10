@@ -86,7 +86,7 @@ USER-MANAGEMENT-API/
 └── README.md
 ```
 
-##  Endpoints (example)
+##  Endpoints 
 
 * GET /users
 * GET /users/:id
