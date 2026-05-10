@@ -9,7 +9,7 @@ describe("User Model", () => {
   });
 
   describe("getAllUsers()", () => {
-    describe("cenários positivos", () => {
+    describe("positive scenarios", () => {
       it("should return all users with correct structure", async () => {
         const users = await userModel.getAllUsers();
 
@@ -26,7 +26,7 @@ describe("User Model", () => {
       });
     });
 
-    describe("cenários negativos", () => {
+    describe("negative scenarios", () => {
       it("should return an empty array when no users exist", async () => {
         userModel.users = [];
 
@@ -39,7 +39,7 @@ describe("User Model", () => {
   });
 
   describe("getById()", () => {
-    describe("cenários positivos", () => {
+    describe("positive scenarios", () => {
       it("should return a user when a valid ID is provided", async () => {
         const user = await userModel.getById(1);
 
@@ -51,7 +51,7 @@ describe("User Model", () => {
       });
     });
 
-    describe("cenários negativos", () => {
+    describe("negative scenarios", () => {
       it("should return undefined when user is not found", async () => {
         const user = await userModel.getById(999);
         expect(user).to.be.undefined;
@@ -65,7 +65,7 @@ describe("User Model", () => {
   });
 
   describe("createUser()", () => {
-    describe("cenários positivos", () => {
+    describe("positive scenarios", () => {
       it("should create a new user and return it with an id", async () => {
         const userData = userFactory();
         const initialLength = userModel.users.length;
@@ -97,7 +97,7 @@ describe("User Model", () => {
   });
 
   describe("updateUser()", () => {
-    describe("cenários positivos", () => {
+    describe("positive scenarios", () => {
       it("should update a user with valid data", async () => {
         const userData = userFactory();
 
@@ -140,7 +140,7 @@ describe("User Model", () => {
       });
     });
 
-    describe("cenários negativos", () => {
+    describe("negative scenarios", () => {
       it("should return null when user does not exist", async () => {
         const updatedUser = await userModel.updateUser(999, {
           email: "teste@email.com",
@@ -152,7 +152,7 @@ describe("User Model", () => {
   });
 
   describe("deleteUser()", () => {
-    describe("cenários positivos", () => {
+    describe("positive scenarios", () => {
       it("should delete a user and remove it from the array", async () => {
         const initialLength = userModel.users.length;
 
@@ -168,7 +168,7 @@ describe("User Model", () => {
       });
     });
 
-    describe("cenários negativos", () => {
+    describe("negative scenarios", () => {
       it("should return null when user does not exist", async () => {
         const deletedUser = await userModel.deleteUser(999);
         expect(deletedUser).to.be.null;
