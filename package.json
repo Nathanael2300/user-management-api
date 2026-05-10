@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha \"tests/**/*.spec.js\"",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "chai": "^6.2.2",
     "chai-as-promised": "^8.0.2",
     "cypress": "^15.14.2",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "cypress-plugin-api": "^2.11.2",
     "mocha": "^11.7.5",
     "nodemon": "^3.1.14",
     "sinon": "^21.1.2",
