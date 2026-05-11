@@ -3,6 +3,35 @@ import userApi from "../helpers/userApi.js";
 import userFactory from "../factories/user.factory.js";
 
 describe("User Integration Tests", () => {
+
+  const fields = [
+  "id",
+  "email",
+  "password",
+  "username",
+  "nickname",
+  "profilePicture",
+  "bio",
+  "phoneNumber",
+  "address",
+  "website",
+  "socialLinks",
+];
+
+const valueTypes = {
+  id: "number",
+  email: "string",
+  password: "string",
+  username: "string",
+  nickname: "string",
+  profilePicture: "string",
+  bio: "string",
+  phoneNumber: "string",
+  address: "object",
+  website: "string",
+  socialLinks: "array",
+};
+  
   let userId;
 
   beforeEach(async () => {
@@ -26,34 +55,6 @@ describe("User Integration Tests", () => {
         expect(resGetAll.status).to.eql(200);
         expect(resGetAll.body).to.have.property("user_total");
         expect(resGetAll.body).to.have.property("users");
-
-        const fields = [
-          "id",
-          "email",
-          "password",
-          "username",
-          "nickname",
-          "profilePicture",
-          "bio",
-          "phoneNumber",
-          "address",
-          "website",
-          "socialLinks",
-        ];
-        const valueTypes = {
-          id: "number",
-          email: "string",
-          password: "string",
-          username: "string",
-          nickname: "string",
-          profilePicture: "string",
-          bio: "string",
-          phoneNumber: "string",
-          address: "object",
-          website: "string",
-          socialLinks: "array",
-        };
-
         expect(resGetAll.body).to.be.an("object");
         expect(resGetAll.body.users).to.be.an("array");
         for (const user of resGetAll.body.users) {
@@ -78,35 +79,7 @@ describe("User Integration Tests", () => {
     describe("Scenarios positive", () => {
       it("Should return a user list", async () => {
         const resGetById = await userApi.getById(userId);
-
         expect(resGetById.status).to.eql(200);
-        const fields = [
-          "id",
-          "email",
-          "password",
-          "username",
-          "nickname",
-          "profilePicture",
-          "bio",
-          "phoneNumber",
-          "address",
-          "website",
-          "socialLinks",
-        ];
-        const valueTypes = {
-          id: "number",
-          email: "string",
-          password: "string",
-          username: "string",
-          nickname: "string",
-          profilePicture: "string",
-          bio: "string",
-          phoneNumber: "string",
-          address: "object",
-          website: "string",
-          socialLinks: "array",
-        };
-
         expect(resGetById.body).to.be.an("object");
         for (const key of fields) {
           expect(resGetById.body.user).to.have.property(key);
@@ -127,34 +100,6 @@ describe("User Integration Tests", () => {
         const beforeUserList = await userApi.getAll();
         const resCreate = await userApi.create(createUser);
         expect(resCreate.status).to.eql(201);
-
-        const fields = [
-          "id",
-          "email",
-          "password",
-          "username",
-          "nickname",
-          "profilePicture",
-          "bio",
-          "phoneNumber",
-          "address",
-          "website",
-          "socialLinks",
-        ];
-        const valueTypes = {
-          id: "number",
-          email: "string",
-          password: "string",
-          username: "string",
-          nickname: "string",
-          profilePicture: "string",
-          bio: "string",
-          phoneNumber: "string",
-          address: "object",
-          website: "string",
-          socialLinks: "array",
-        };
-
         expect(resCreate.body).to.be.an("object");
         expect(resCreate.body.user).to.be.an("object");
         for (const key of fields) {
@@ -178,20 +123,6 @@ describe("User Integration Tests", () => {
     describe("Scenario positive", () => {
       it("Should update a user successfully", async () => {
         const dataUpdated = userFactory();
-
-        const fields = [
-          "email",
-          "password",
-          "username",
-          "nickname",
-          "profilePicture",
-          "bio",
-          "phoneNumber",
-          "address",
-          "website",
-          "socialLinks",
-        ];
-
         const resPut = await userApi.update(userId, dataUpdated);
         expect(resPut.status).to.eql(200);
         expect(resPut.body).to.be.an("object");
